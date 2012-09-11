@@ -1,0 +1,10 @@
+alias ls='ls -GF'
+alias ll='ls -l'
+alias lo='ls -o'
+alias lh='ls -h'
+alias sl='ls'
+alias l='ls'
+alias s='ls'
+
+alias paux='ps aux|grep -i'
+alias which='type -a'
