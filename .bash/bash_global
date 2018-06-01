@@ -1,0 +1,14 @@
+NPM_PACKAGES="${HOME}/.npm-packages"
+PATH="$NPM_PACKAGES/bin:$PATH"
+
+# History configs
+export HISTFILESIZE=500000
+export HISTSIZE=500000
+shopt -s histappend
+# Combine multiline commands into one
+shopt -s cmdhist
+# Ignore duplicates, ls without options and builtin commands
+HISTCONTROL=ignoredups
+export HISTIGNORE="&:ls:sl"
+# Store a timestamp in the history
+export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S - '

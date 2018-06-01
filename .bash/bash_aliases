@@ -1,0 +1,13 @@
+alias ls='ls -GF'
+alias ll='ls -ltr'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+alias cgrep="egrep --color=always"
+
+alias paux='ps aux|grep -i'
+alias which='type -a'

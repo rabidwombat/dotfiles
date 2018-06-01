@@ -1,5 +1,7 @@
 set nocompatible
 
+set runtimepath^=~/.vim/pack/plugins/start/vim-vue/syntax/vue.vim
+
 autocmd!
 set backspace=indent,eol,start
 
@@ -9,6 +11,7 @@ set textwidth=0
 set showcmd
 set encoding=utf-8
 set fileencoding=utf-8
+set number
 
 set showmatch
 set ignorecase
@@ -19,14 +22,54 @@ set incsearch
 set wildmenu
 set wildmode=list:longest
 
-set history=10000
-set viminfo='20,\"50
-
-set showcmd
-set ruler				" always show the cursor position
+set nobackup
+set history=5000
+set laststatus=2
+set ruler
 set title
 
-" I like tabs
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
+set expandtab
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+
+set foldmethod=indent
+set foldnestmax=3
+set nofoldenable
+set foldlevel=1
+
+nmap <C-J> a<CR><ESC>
+
+filetype plugin indent on
+syntax on
+colors tomorrownight-bright
+
+" au BufRead,BufNewFile *.less set filetype=css
+au BufRead,BufNewFile *.vue set filetype=html
+au BufRead,BufNewFile *.less set filetype=less
+au BufRead,BufNewFile *.ts set filetype=typescript
+
+augroup myvimrc
+  au!
+  au BufWritePost .vimrc so $MYVIMRC | if has ('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+function! MakeSession()
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p ' b:sessiondir
+    redraw!
+  endif
+  let b:filename = b:sessiondir . '/session.vim'
+  exe "mksession! " . b:filename
+endfunction
+
+function! LoadSession()
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  let b:sessionfile = b:sessiondir . "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe 'source ' b:sessionfile
+  else
+    echo "No session loaded."
+  endif
+endfunction
